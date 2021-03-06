@@ -84,6 +84,7 @@ AST_T* parser_parse_function_call(parser_T* parser){
 		function_call->function_call_arguments[function_call->function_call_arguments_size-1]=parser_parse_statement(parser);		
 	}
 	parser_eat(parser,TOKEN_RPAREN);
+	// printf("parsing funciton call\n");
 	return function_call;
 }
 
@@ -102,9 +103,8 @@ AST_T* parser_parse_variable_definition(parser_T* parser){
 AST_T* parser_parse_variable(parser_T* parser){
 	char *token_value=parser->current_token->value;
 	parser_eat(parser,TOKEN_ID);
-	if(parser->current_token->type==TOKEN_LPAREN){
-		parser_parse_function_call(parser);
-	}
+	if(parser->current_token->type==TOKEN_LPAREN)return parser_parse_function_call(parser);
+
 	AST_T* ast_variable=init_ast(AST_VARIABLE);
 	ast_variable->variable_name=token_value;
 	return ast_variable;
@@ -119,7 +119,7 @@ AST_T* parser_parse_string(parser_T* parser){
 }
 
 AST_T* parser_parse_id(parser_T* parser){
-	if(strcmp(parser->current_token->value, "var") == 0){ 
+	if(strcmp(parser->current_token->value, "def") == 0){ 
 		return parser_parse_variable_definition(parser);
 	}
 	else{

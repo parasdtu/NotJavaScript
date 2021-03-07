@@ -22,6 +22,7 @@ void parser_eat(parser_T* parser,int token_type){
 			parser->current_token->type);
 		exit(1);
 	}
+	// printf("parser_eat executed\n");
 }
 
 AST_T* parser_parse(parser_T* parser){
@@ -33,7 +34,8 @@ AST_T* parser_parse_statement(parser_T* parser){
 	if(parser->current_token->type==TOKEN_ID){
 		return parser_parse_id(parser);
 	}
-
+    return (void*)0;
+	
 }
 
 AST_T* parser_parse_statements(parser_T* parser){
@@ -44,12 +46,14 @@ AST_T* parser_parse_statements(parser_T* parser){
 	compound->compound_size+=1;
 	
 	while(parser->current_token->type==TOKEN_SEMI){
+		// printf("%d\n",parser->current_token->type);
 		parser_eat(parser,TOKEN_SEMI);
 		compound->compound_size+=1;
 		compound->compound_value=realloc(compound->compound_value,compound->compound_size*sizeof(struct AST_STRUCT*));
 		compound->compound_value[compound->compound_size-1]=parser_parse_statement(parser);
 	}
 	if(compound->compound_size>=1)compound->compound_size-=1;
+	// printf(" parser_parse_statements\n");
 	return compound;
 }
 
@@ -59,7 +63,7 @@ AST_T* parser_parse_expr(parser_T* parser){
         case TOKEN_STRING: return parser_parse_string(parser);
         case TOKEN_ID: return parser_parse_id(parser);
     }
-
+    return init_ast(AST_NOOP);
 }
 
 AST_T* parser_parse_factor(parser_T* parser){
@@ -97,10 +101,12 @@ AST_T* parser_parse_variable_definition(parser_T* parser){
 	AST_T* variable_definition=init_ast(AST_VARIABLE_DEFINITION);
 	variable_definition->variable_definition_variable_name=variable_definition_name;
 	variable_definition->variable_definition_value=variable_definition_value;
+	// printf("parser_parse_variable_definition: %s\n",parser->prev_token->value);
 	return variable_definition;
 }
 
 AST_T* parser_parse_variable(parser_T* parser){
+	// printf("parser_parse_variable\n");
 	char *token_value=parser->current_token->value;
 	parser_eat(parser,TOKEN_ID);
 	if(parser->current_token->type==TOKEN_LPAREN)return parser_parse_function_call(parser);

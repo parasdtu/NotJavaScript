@@ -88,5 +88,6 @@ char* lexer_get_current_char_as_string(lexer_T* lexer){
     char* str = calloc(2, sizeof(char));
     str[0] = lexer->c;
     str[1] = '\0';
+    // printf("%c\n",str[0] );
     return str;
 }

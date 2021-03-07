@@ -1,4 +1,4 @@
-exec = pnp.out
+exec = njs.out
 sources = $(wildcard src/*.c)
 objects = $(sources:.c=.o)
 flags = -g
@@ -12,7 +12,7 @@ $(exec): $(objects)
 
 install:
 	make
-	cp ./pnp.out /usr/local/bin/pnp
+	cp ./njs.out /usr/local/bin/njs
 
 clean:
 	-rm *.out

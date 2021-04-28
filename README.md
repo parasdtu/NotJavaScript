@@ -13,7 +13,7 @@ This language follows the Top-Down Parsing (TDP with Backtracking) approach to c
 using tokens built by lexers based on the defined grammar.
 
 Structure of the language:
-![Tree diagram](https://drive.google.com/file/d/1Z-FATHGjLetxSirpnDpnvEl7ly6bNgKl/view?usp=sharing)
+![Tree diagram](/screenshots/tree.jpg)
 
 ## How to use and compile?
 1. Download any GCC compiler (the same that is used for compiling C/C++)
@@ -49,10 +49,10 @@ func_name(var1,var2);
 
 ## Sample 
 ###### Sample Source Code saved as `.njs`
-![Source code](https://drive.google.com/file/d/1BMurcOYCFuI1aei2lFjhXTK02TrMOg69/view?usp=sharing)
+![Source code](/screenshots/source_code.png)
 
 ###### Output
-![Output](https://drive.google.com/file/d/16WX6xxeQmDVTcMv4gMWpEopF5zWceneS/view?usp=sharing)
+![Output](/screenshots/output.png)
 
 
 

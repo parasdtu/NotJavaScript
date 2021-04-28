@@ -1,3 +1,2 @@
-def name = "Jatta ka chora";
-def type = "Pop";
-out(name,type);
+def name="shoyo";
+out(name);

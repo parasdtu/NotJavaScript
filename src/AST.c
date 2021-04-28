@@ -4,7 +4,7 @@
 AST_T* init_ast(int type){
 	AST_T* ast=calloc(1,sizeof(AST_T));
 	ast->type=type;
-	
+	ast->scope = (void*)0;
 	//AST_VARIABLE_DEFINITION
 	ast->variable_definition_variable_name=(void*)0;
 	ast-> variable_definition_value=(void*)0;

@@ -32,7 +32,6 @@ token_T* lexer_get_next_token(lexer_T* lexer){
         if (isalnum(lexer->c))return lexer_collect_id(lexer);
 
         if (lexer->c == '"')return lexer_collect_string(lexer);
-
         switch (lexer->c){
             case '=': return lexer_advance_with_token(lexer, init_token(TOKEN_EQUALS, lexer_get_current_char_as_string(lexer))); break;
             case ';': return lexer_advance_with_token(lexer, init_token(TOKEN_SEMI, lexer_get_current_char_as_string(lexer))); break;
@@ -88,6 +87,5 @@ char* lexer_get_current_char_as_string(lexer_T* lexer){
     char* str = calloc(2, sizeof(char));
     str[0] = lexer->c;
     str[1] = '\0';
-    // printf("%c\n",str[0] );
     return str;
 }
